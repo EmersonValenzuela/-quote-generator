@@ -91,7 +91,7 @@ async function ensureInitialAdministrator(
   }
 
   const bootstrapAuth = betterAuth({
-    appName: "Cotizador familiar",
+    appName: "Cotizador",
     baseURL: process.env.BETTER_AUTH_URL ?? "http://localhost:3000",
     secret: input.secret,
     database: prismaAdapter(prisma, { provider: "postgresql" }),

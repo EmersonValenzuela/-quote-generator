@@ -1,8 +1,8 @@
-# Plan del cotizador familiar
+# Plan del sistema de cotizaciones
 
-**Actualizado:** 9 de octubre de 2026. **Estado:** base inicial, autenticación, recuperación, clientes, configuración de empresa y borradores están conectados parcialmente y probados contra Neon. Los borradores guardados ya permiten descargar una previsualización PDF privada marcada como no emitida; la emisión y los estados comerciales siguen pendientes. También faltan cuentas familiares adicionales, bancos/plantilla y pruebas E2E de etapa 3. La validación local de la etapa 1 pasó, pero falta el Vercel Preview requerido para cerrarla formalmente. Evidencia reciente en [docs/verification.md](./docs/verification.md).
+**Actualizado:** 9 de octubre de 2026. **Estado:** base inicial, autenticación, recuperación, clientes, configuración de empresa y borradores están conectados parcialmente y probados contra Neon. Los borradores guardados ya permiten descargar una previsualización PDF privada marcada como no emitida; la emisión y los estados comerciales siguen pendientes. También faltan gestión de usuarios, bancos/plantilla y pruebas E2E de etapa 3. La validación local de la etapa 1 pasó, pero falta el Vercel Preview requerido para cerrarla formalmente. Evidencia reciente en [docs/verification.md](./docs/verification.md).
 
-Proyecto nuevo e independiente. Aplicación gratuita para uso familiar por ahora, sin IA integrada y sin servicios de pago. No usar infraestructura ni datos de proyectos anteriores. Una cuenta emisora compartida con usuarios familiares es el alcance inicial; multiempresa queda fuera.
+Proyecto nuevo e independiente: sistema de cotizaciones, sin IA integrada ni servicios de pago. No usar infraestructura ni datos de proyectos anteriores. El alcance inicial contempla una empresa emisora y usuarios autorizados; multiempresa queda fuera.
 
 ## Documentos propietarios
 
@@ -79,20 +79,20 @@ Implementar correlativo transaccional, snapshots, PDF conservado y estados comer
 - PDFs reales de 1 y 3 páginas revisados otra vez desde una revisión persistida.
 - WhatsApp usa teléfono confirmado y texto codificado, sin autoenvío, adjunto automático ni cambio de estado engañoso.
 
-### 5. Publicación familiar gratuita
+### 5. Publicación
 
 Validar cuotas/uso permitido, acceso, backup, restauración y despliegue definitivo.
 
 **Terminado cuando:**
 - Comandos base y flujo completo en preview pasan.
 - No hay plan de pago, overage automático, API de IA ni proveedor obligatorio contratado.
-- Uso real compatible con hosting documentado; ser gratis para la familia no basta para clasificarlo como no comercial.
+- Uso real compatible con las condiciones del hosting documentado, incluidas las restricciones comerciales aplicables.
 - Copia local restaurada en BD aislada y PDFs recuperados.
-- Familia puede crear, emitir, descargar y recuperar acceso; límites y procedimiento ante cuota agotada documentados.
+- Usuarios autorizados pueden crear, emitir, descargar y recuperar acceso; límites y procedimiento ante cuota agotada documentados.
 
 ## Datos aún por confirmar
 
-Logo/fuentes y datos de la cuenta emisora; tamaño de papel; formato final de numeración; si las cotizaciones son ejercicios personales o ventas reales para verificar condiciones de hosting. El modo con/sin IGV, pnpm y la independencia del proyecto ya están confirmados.
+Logo/fuentes y datos de la cuenta emisora; tamaño de papel; formato final de numeración; verificación de las condiciones del hosting para el uso previsto. El modo con/sin IGV, pnpm y la independencia del proyecto ya están confirmados.
 
 ## Regla de seguimiento
 

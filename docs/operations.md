@@ -4,8 +4,8 @@ Este documento es la referencia operativa para variables de entorno, aprovisiona
 
 ## 1. Restricciones de servicio y costo
 
-- El sistema está planteado para uso familiar gratuito. No integrar IA, servicios de pago, planes de prueba con cobro posterior ni overages automáticos.
-- Vercel Hobby solo es candidato: el uso debe cumplir sus condiciones vigentes. Cotizar para ventas de un negocio puede ser uso comercial aunque la aplicación sea gratis para la familia. Verificarlo antes de publicar.
+- El sistema no debe activar servicios de pago, planes de prueba con cobro posterior ni overages automáticos.
+- Vercel Hobby solo es candidato: verificar sus condiciones vigentes y que permitan el uso real previsto. Si las cotizaciones se usan para ventas, confirmar que ese uso comercial esté permitido antes de publicar.
 - Neon es la base PostgreSQL configurada en el entorno local actual. No asumir disponibilidad, cuota o retención gratuita ilimitada.
 - Vercel Blob, Sentry y hosting administrado no están integrados solo por aparecer en este documento o en `.env.example`.
 - Si se alcanza un límite, detener la operación que necesita el recurso, conservar los datos, comunicar el bloqueo y revisar alternativas. No activar plan o gasto automáticamente.
@@ -117,8 +117,8 @@ Es interactivo: confirma destino, correo y nueva contraseña dos veces con entra
 - Better Auth usa credenciales, registro público deshabilitado y sesiones PostgreSQL.
 - `role=admin` puede guardar configuración de empresa; `cotizador` es el rol de negocio predeterminado.
 - Mutaciones de negocio exigen sesión activa; el cambio obligatorio de contraseña bloquea el workspace y descargas.
-- Los mensajes de recuperación no prometen envío de email. El familiar contacta al administrador.
-- No hay gestión de usuarios familiares en la UI actual.
+- Los mensajes de recuperación no prometen envío de email. El usuario debe contactar al administrador.
+- La UI actual no incluye gestión de usuarios.
 
 ## 7. Logs y auditoría
 
@@ -151,7 +151,7 @@ pnpm start
 **No existe evidencia de despliegue Vercel/Preview o producción.** Antes de publicar:
 
 1. Elegir branch/base de datos separada de `production` para preview/dev.
-2. Verificar oficialmente condiciones vigentes y compatibilidad del hosting con el uso familiar/comercial previsto.
+2. Verificar oficialmente las condiciones vigentes y la compatibilidad del hosting con el uso previsto, incluidas las restricciones comerciales aplicables.
 3. Verificar límites gratuitos, backups/restore y tratamiento de secretos; no aceptar upgrades automáticos.
 4. Configurar solo variables consumidas, con valores separados por entorno.
 5. Aplicar migraciones de forma controlada; no ejecutar seed automáticamente.

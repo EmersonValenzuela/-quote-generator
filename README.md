@@ -1,6 +1,6 @@
-# Cotizador familiar
+# Sistema de cotizaciones
 
-Aplicación privada para preparar cotizaciones familiares. El sistema actual conecta clientes, datos básicos de empresa y borradores con PostgreSQL; permite descargar un PDF de previsualización privado, marcado como no emitido.
+Aplicación privada para preparar cotizaciones. El sistema actual conecta clientes, datos básicos de empresa y borradores con PostgreSQL; permite descargar un PDF de previsualización privado, marcado como no emitido.
 
 ## Documentación
 

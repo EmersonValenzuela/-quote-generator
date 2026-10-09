@@ -18,9 +18,9 @@ Ante una contradicción, aplicar la instrucción explícita más reciente del us
 
 ## Restricciones confirmadas
 
-Aplicación familiar gratuita por ahora. No integrar IA, LLM, embeddings, agentes, OCR de pago, AI SDK ni API de modelos dentro del producto. La ayuda de IA durante el desarrollo no implica una función de IA en la aplicación.
+Sistema de cotizaciones. No integrar IA, LLM, embeddings, agentes, OCR de pago, AI SDK ni API de modelos dentro del producto. La ayuda de IA durante el desarrollo no implica una función de IA en la aplicación.
 
-No contratar servicios ni activar planes, pruebas que pasen a cobro u overages automáticos. Usar librerías gratuitas y servicios con plan gratuito verificado. Si un límite impide continuar, informar y mantener los datos; no actualizar el plan automáticamente. No prometer alojamiento gratuito ilimitado.
+No contratar servicios ni activar planes, pruebas que pasen a cobro u overages automáticos. Usar librerías gratuitas y servicios con plan gratuito verificado. Si un límite impide continuar, informar y mantener los datos; no actualizar el plan automáticamente. No prometer alojamiento gratuito ilimitado. Antes de publicar, verificar que las condiciones del hosting permitan el uso real del sistema, incluido el uso comercial si corresponde.
 
 V1 sin correo transaccional y sin Browserless. Monitoreo básico con logs estructurados; Sentry gratuito es opcional, desactivado por defecto. El alcance de uso personal/no comercial del hosting debe verificarse antes de publicar: una app gratuita puede usarse con fines comerciales.
 

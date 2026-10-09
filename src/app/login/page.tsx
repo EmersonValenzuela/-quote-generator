@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { LoginForm } from "@/features/users/components/login-form";
 
 export const metadata: Metadata = {
-  title: "Acceso | Cotizador familiar",
-  description: "Acceso privado al cotizador familiar.",
+  title: "Acceso | Sistema de cotizaciones",
+  description: "Acceso privado al sistema de cotizaciones.",
 };
 
 export default function LoginPage() {

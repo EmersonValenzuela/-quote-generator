@@ -8,7 +8,7 @@ import { getPrismaClient } from "@/lib/db/prisma";
 
 function createAuth() {
   return betterAuth({
-    appName: "Cotizador familiar",
+    appName: "Cotizador",
     baseURL: env.BETTER_AUTH_URL,
     secret: env.BETTER_AUTH_SECRET,
     database: prismaAdapter(getPrismaClient(), { provider: "postgresql" }),

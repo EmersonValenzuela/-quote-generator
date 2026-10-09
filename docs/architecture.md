@@ -165,7 +165,7 @@ No verificado:
   Preview/producción de la app, Blob, Sentry, correo, backups/restauración
 ```
 
-No asumir que Neon production debe usarse para desarrollo. Antes de E2E, preview o seed demo usar base/branch aislado. Vercel sigue siendo candidato, no despliegue demostrado. Límites y coste se comprueban al publicar; no asumir uso comercial permitido por ser familiar/gratuito.
+No asumir que Neon production debe usarse para desarrollo. Antes de E2E, preview o seed demo usar base/branch aislado. Vercel sigue siendo candidato, no despliegue demostrado. Límites, coste y permiso para el uso comercial previsto se comprueban al publicar.
 
 Variables y scripts se detallan en [operations.md](./operations.md).
 

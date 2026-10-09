@@ -5,7 +5,7 @@ import { ChangePasswordForm } from "@/features/users/components/change-password-
 import { getAuth } from "@/lib/auth/auth";
 
 export const metadata: Metadata = {
-  title: "Cambiar contraseña | Cotizador familiar",
+  title: "Cambiar contraseña | Sistema de cotizaciones",
   description: "Actualiza tu contraseña temporal para continuar.",
 };
 

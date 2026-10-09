@@ -103,7 +103,7 @@ No todos los directorios descritos como objetivo futuro en [architecture.md](./a
 | `/api/auth/[...all]` | Endpoints gestionados por Better Auth. |
 | `/api/quotes/drafts/[id]/pdf` | Genera y devuelve el PDF del borrador guardado si la sesión es válida. |
 
-No existen aún rutas para emitir, aceptar/rechazar, anular, gestionar usuarios de familia ni descargar una revisión emitida.
+No existen aún rutas para emitir, aceptar/rechazar, anular, gestionar usuarios ni descargar una revisión emitida.
 
 ## 4. Infraestructura y entornos
 
@@ -142,7 +142,7 @@ Prisma define, en términos funcionales:
 
 | Modelo | Uso actual |
 | --- | --- |
-| `User`, `Session`, `Account`, `Verification` | Identidad y sesión Better Auth; rol familiar y cambio obligatorio de clave |
+| `User`, `Session`, `Account`, `Verification` | Identidad y sesión Better Auth; roles de acceso y cambio obligatorio de clave |
 | `CompanySettings` | Emisor principal (`main`), datos básicos, moneda PEN, tasa IGV y vigencia |
 | `BankAccount` | Esquema disponible; UI de mantenimiento aún pendiente |
 | `Customer` | Directorio persistente de clientes |
@@ -238,7 +238,7 @@ Los artefactos de comparación en `artifacts/pdf-comparison/` son fixtures sint�
 
 - Emisión transaccional, correlativo, revisiones comerciales y estados aceptada/rechazada/anulada.
 - PDF final generado desde revisión emitida e inmutable, con almacenamiento privado y descarga autorizada por revisión.
-- Edición de bancos, logo y plantilla; gestión de usuarios familiares.
+- Edición de bancos, logo y plantilla; gestión de usuarios.
 - Autocompletado de conceptos emitidos, exportaciones y WhatsApp.
 - Sentry opcional, Blob, correo transaccional, despliegue, plan de backup y prueba de restauración.
 - E2E de creación/edición de extremo a extremo en escritorio/móvil y validación del Preview de infraestructura.

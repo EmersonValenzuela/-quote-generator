@@ -45,7 +45,7 @@ export function LoginForm() {
       <section className="login-card" aria-labelledby="login-title">
         <div className="login-brand">
           <span className="brand-symbol">T</span>
-          <span><strong>Taller Familiar</strong><small>COTIZADOR</small></span>
+          <span><strong>Cotizador</strong><small>SISTEMA DE COTIZACIONES</small></span>
         </div>
         <div className="login-heading">
           <span className="login-icon"><KeyRound size={19} /></span>

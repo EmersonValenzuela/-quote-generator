@@ -81,8 +81,8 @@ export function WorkspaceLayout({
             <button onClick={onHelp}>Ver guía <ArrowRight size={14} /></button>
           </div>
           <button className="profile-button" onClick={() => navigate("settings")}>
-            <span className="avatar">TF</span>
-            <span className="profile-copy"><strong>{userName}</strong><small>Cuenta familiar</small></span>
+            <span className="avatar">C</span>
+            <span className="profile-copy"><strong>{userName}</strong><small>Usuario</small></span>
             <MoreHorizontal size={18} />
           </button>
         </div>
