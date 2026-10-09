@@ -1,0 +1,218 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                    String         @id @default(uuid())
+  name                  String
+  email                 String         @unique
+  emailVerified         Boolean        @default(false)
+  image                 String?
+  role                  String         @default("cotizador")
+  banned                Boolean        @default(false)
+  banReason             String?
+  banExpires             DateTime?
+  impersonatedBy        String?
+  mustChangePassword    Boolean        @default(false)
+  isActive              Boolean        @default(true)
+  createdAt             DateTime       @default(now())
+  updatedAt             DateTime       @updatedAt
+  sessions              Session[]
+  accounts              Account[]
+  createdCustomers      Customer[]     @relation("CustomerCreator")
+  createdQuoteDrafts    QuoteDraft[]   @relation("DraftCreator")
+  updatedQuoteDrafts    QuoteDraft[]   @relation("DraftUpdater")
+  auditEvents           AuditEvent[]   @relation("AuditActor")
+
+  @@map("users")
+}
+
+model Session {
+  id             String   @id @default(uuid())
+  expiresAt      DateTime
+  token          String   @unique
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  ipAddress      String?
+  userAgent      String?
+  impersonatedBy String?
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model Account {
+  id                    String    @id @default(uuid())
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Verification {
+  id          String   @id @default(uuid())
+  identifier  String
+  value       String
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verifications")
+}
+
+model CompanySettings {
+  id                 String        @id @default("main")
+  tradeName          String        @default("Empresa pendiente de configuración")
+  legalName          String        @default("")
+  taxId              String        @default("")
+  address            String        @default("")
+  phone              String        @default("")
+  email              String        @default("")
+  currency           String        @default("PEN")
+  taxRate            Decimal       @default(18) @db.Decimal(5, 2)
+  defaultValidityDays Int          @default(15)
+  timezone           String        @default("America/Lima")
+  setupCompleted     Boolean       @default(false)
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  bankAccounts       BankAccount[]
+}
+
+model BankAccount {
+  id                String          @id @default(cuid())
+  companySettingsId String
+  companySettings  CompanySettings @relation(fields: [companySettingsId], references: [id], onDelete: Cascade)
+  bankName          String
+  currency          String          @default("PEN")
+  accountHolder     String
+  accountNumber     String
+  interbankCode     String?
+  position          Int             @default(0)
+  isActive          Boolean         @default(true)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  @@index([companySettingsId, position])
+}
+
+model Customer {
+  id          String    @id @default(cuid())
+  documentType String?
+  documentNumber String?
+  name        String
+  address     String    @default("")
+  contactName String    @default("")
+  email       String    @default("")
+  phone       String    @default("")
+  isActive    Boolean   @default(true)
+  createdById String?
+  createdBy   User?     @relation("CustomerCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  quoteDrafts QuoteDraft[] @relation("DraftCustomer")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([name])
+  @@index([documentNumber])
+  @@index([isActive, name])
+  @@map("customers")
+}
+
+model QuoteDraft {
+  id                String            @id @default(cuid())
+  version           Int               @default(1)
+  status            String            @default("DRAFT")
+  issueDate         DateTime          @db.Date
+  service           String
+  taxMode           String?
+  appliedTaxRate    Decimal           @default(0) @db.Decimal(5, 2)
+  subtotal          Decimal           @default(0) @db.Decimal(14, 2)
+  taxAmount         Decimal           @default(0) @db.Decimal(14, 2)
+  total             Decimal           @default(0) @db.Decimal(14, 2)
+  customerId        String?
+  customer          Customer?         @relation("DraftCustomer", fields: [customerId], references: [id], onDelete: SetNull)
+  customerName      String
+  customerTaxId     String            @default("")
+  customerAddress   String            @default("")
+  customerContact   String            @default("")
+  companyName       String
+  companyTaxId      String            @default("")
+  companyAddress    String            @default("")
+  companyPhone      String            @default("")
+  companyBankDetails String           @default("")
+  materials         String[]          @default([])
+  paymentConditions String            @default("")
+  validityConditions String           @default("")
+  executionConditions String          @default("")
+  createdById       String
+  createdBy         User              @relation("DraftCreator", fields: [createdById], references: [id], onDelete: Restrict)
+  updatedById       String
+  updatedBy         User              @relation("DraftUpdater", fields: [updatedById], references: [id], onDelete: Restrict)
+  items             QuoteDraftItem[]
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@index([status, updatedAt])
+  @@index([customerName])
+  @@map("quote_drafts")
+}
+
+model QuoteDraftItem {
+  id          String     @id @default(cuid())
+  quoteDraftId String
+  quoteDraft  QuoteDraft @relation(fields: [quoteDraftId], references: [id], onDelete: Cascade)
+  position    Int
+  description String
+  quantity    Decimal    @db.Decimal(10, 3)
+  unitCode    String
+  unitPrice   Decimal    @db.Decimal(12, 4)
+
+  @@unique([quoteDraftId, position])
+  @@index([quoteDraftId])
+  @@map("quote_draft_items")
+}
+
+model UnitOfMeasure {
+  code      String   @id
+  label     String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("units_of_measure")
+}
+
+model AuditEvent {
+  id         String   @id @default(cuid())
+  actorId    String?
+  actor      User?    @relation("AuditActor", fields: [actorId], references: [id], onDelete: SetNull)
+  action     String
+  entityType String
+  entityId   String?
+  requestId  String
+  createdAt  DateTime @default(now())
+
+  @@index([actorId, createdAt])
+  @@index([entityType, entityId, createdAt])
+  @@index([requestId])
+  @@map("audit_events")
+}
